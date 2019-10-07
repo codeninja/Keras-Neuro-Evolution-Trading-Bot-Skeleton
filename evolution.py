@@ -1,5 +1,5 @@
-from keras.models import Sequential
-from keras.layers.core import Dense
+from tensorflow.keras.models import Sequential
+from tensorflow.keras.layers import Dense
 from utils.Population import Population
 import numpy as np
 from time import time
@@ -14,7 +14,7 @@ def build_model():
     model.add(Dense(hidden_nodes, activation='relu', input_dim=num_inputs))
     model.add(Dense(num_outputs, activation='softmax'))
     model.compile(loss='mse', optimizer='adam')
-    
+
     return model
 
 if __name__ == '__main__':
@@ -25,18 +25,18 @@ if __name__ == '__main__':
     pop_size = 50
     mutation_rate = 0.05
     mutation_scale = 0.3
-    starting_cash = 1.
-    trading_fee = 0
-    generations = 10
+    starting_cash = 100.
+    trading_fee = 0.005
+    generations = 100
 
     # generate random test data
-    test_size = 100
+    test_size = 300
     np.random.seed(42)
     prices = np.random.normal(10, 0.1, test_size)
     inputs = np.random.rand(test_size, 4) * 2 - 1
 
     # build initial population
-    pop = Population(pop_size, build_model, mutation_rate, 
+    pop = Population(pop_size, build_model, mutation_rate,
                      mutation_scale, starting_cash, prices[0], trading_fee)
 
     # run defined number of evolutions
