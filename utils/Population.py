@@ -4,12 +4,16 @@ from tensorflow.keras.models import load_model, model_from_json
 
 import matplotlib.pyplot as plt
 
+import pandas as pd
 import numpy as np
 import os
 import random
 
 class Population(object):
-    def __init__(self, pop_size, model_builder, mutation_rate, mutation_scale, starting_cash, starting_price, trading_fee, big_bang=True, remove_sleep=False, one_output=False, dump_trades=False, dump_file=None):
+    def __init__(self, pop_size, model_builder, mutation_rate, mutation_scale,
+                    starting_cash, starting_price, trading_fee, big_bang=True,
+                    remove_sleep=False, one_output=False, dump_trades=False, dump_file=None):
+                    
         self.pop_size = pop_size
         self.agents = []
 
